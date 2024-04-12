@@ -1,4 +1,4 @@
-package org.day;
+package org.day2;
 
 /**
  * @author yaocy
