@@ -1,0 +1,44 @@
+# JAVA
+*.class
+#Maven
+target/
+**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+# JetBrains
+*.iml
+.idea
+*.log
+# Eclipse
+*.pydevproject
+.factorypath
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+# Eclipse Core
+.project
+# Locally stored "Eclipse launch configurations"
+*.launch
+# External tool builders
+.externalToolBuilders/
+business-module-web/portal-web/src/main/resources/index.html
+cloudt-gateway/cloudt-gateway-admin/.springBeans
+*.DS_Store
+**/logs/
+/.fastRequest/
