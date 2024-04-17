@@ -1,11 +1,10 @@
 package org.day3;
 
 /**
- * @program: exercises
- * @description:
- * @author: hons.chang
- * @since: 2024-04-15 16:25
- **/
+ * @author yaocy
+ * @date 2024-4-15 19:11
+ * @description
+ */
 
 
 /**
