@@ -63,10 +63,14 @@ public class TestDay2_1 {
                     baseInfoAndHobby.setHobbyStr("");
                 }
                 // BaseInfoAndHobby 实体类中重写了 hashCode和equals方法，就会使对象中某个值一样，就认为是重复了
+                if (baseInfoAndHobbies.contains(baseInfoAndHobby)) {
+                    baseInfoAndHobbies.remove(baseInfoAndHobby);
+                }
                 baseInfoAndHobbies.add(baseInfoAndHobby);
+                }
 
 
-            }
+
 
 
 
