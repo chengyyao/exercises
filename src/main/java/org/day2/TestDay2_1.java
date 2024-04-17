@@ -117,7 +117,8 @@ public class TestDay2_1 {
                 Hobby value = hobbyEntry.getValue();
                 String svalue = value.getHobbyList().stream().filter(a -> a.contains("球")).collect(Collectors.joining(","));
                 if (svalue != null && !svalue.isEmpty()){
-                    s += hobbyEntry.getKey() + "(" + svalue + ")" + ",";
+                    StringBuilder stringBuilder = new StringBuilder();
+                    s += stringBuilder.append(hobbyEntry.getKey()).append("(").append(svalue).append(")").append(",");
                 }
             }
             if (s !="" && s.length()>0){
