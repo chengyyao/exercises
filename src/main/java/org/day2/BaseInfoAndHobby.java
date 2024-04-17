@@ -1,5 +1,7 @@
 package org.day2;
 
+import java.util.Objects;
+
 /**
  * @author yaocy
  * @date 2024-4-16 15:17
@@ -25,6 +27,18 @@ public class BaseInfoAndHobby {
         this.subsidy = subsidy;
         this.time = time;
         this.hobbyStr = hobbyStr;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseInfoAndHobby that = (BaseInfoAndHobby) o;
+        return Objects.equals(name, that.name);}
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     public String getName() {
