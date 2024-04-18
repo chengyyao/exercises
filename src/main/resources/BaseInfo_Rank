@@ -1,0 +1,12 @@
+BaseInfoAndRank{name='张三', nickName='小可爱', age=20, salary=15666.151, subsidy=300.666, time=1693524683000, yearBonus=36032.15}
+BaseInfoAndRank{name='李四', nickName='大宝', age=25, salary=19888.726, subsidy=450.987, time=1672732257000, yearBonus=101432.5}
+BaseInfoAndRank{name='王五', nickName='小王子', age=30, salary=23500.452, subsidy=0.0, time=1693656324000, yearBonus=7050.14}
+BaseInfoAndRank{name='赵六', nickName='小六子', age=28, salary=18999.889, subsidy=350.234, time=1693727457000, yearBonus=218498.72}
+BaseInfoAndRank{name='刘七', nickName='七七爷', age=22, salary=16888.123, subsidy=275.678, time=1693798590000, yearBonus=143549.05}
+BaseInfoAndRank{name='陈八', nickName='小八儿', age=29, salary=17000.789, subsidy=400.567, time=1693869723000, yearBonus=144506.71}
+BaseInfoAndRank{name='黄九', nickName='九九仔', age=32, salary=24888.312, subsidy=550.89, time=1693940856000, yearBonus=0.0}
+BaseInfoAndRank{name='林十', nickName='十十哥', age=27, salary=17666.987, subsidy=320.456, time=1694011989000, yearBonus=0.0}
+BaseInfoAndRank{name='郑十一', nickName='小十一', age=24, salary=18900.654, subsidy=380.789, time=0, yearBonus=0.0}
+BaseInfoAndRank{name='周十二', nickName='十二哥', age=26, salary=20222.345, subsidy=420.123, time=1694154255000, yearBonus=0.0}
+BaseInfoAndRank{name='张三', nickName='小逗比', age=20, salary=15666.151, subsidy=300.666, time=1693524683000, yearBonus=36032.15}
+BaseInfoAndRank{name='', nickName='小逗比', age=20, salary=15666.151, subsidy=300.666, time=1693524683000, yearBonus=0.0}
