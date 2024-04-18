@@ -63,7 +63,7 @@ public class TestDay3 {
                 baseInfoAndRank.setTime(baseInfo.getTime());
                 if (rankHm.containsKey(baseInfo.getName())){
                     double v = baseInfo.getSalary() * rankHm.get(baseInfo.getName()).getYearBonus();
-                    BigDecimal vb = new BigDecimal(v);
+                    BigDecimal vb = BigDecimal.valueOf(v);
                     baseInfoAndRank.setYearBonus(vb.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
                 }else {
                     baseInfoAndRank.setYearBonus(0.0);
