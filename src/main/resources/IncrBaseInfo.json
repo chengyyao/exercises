@@ -1,0 +1,26 @@
+[
+  {
+    "name": "李四",
+    "nickname": "小四",
+    "age": 22,
+    "salary": 15644.1,
+    "subsidy": 300,
+    "time": 1693524683000
+  },
+  {
+    "name": "饺子",
+    "nickname": "小饺子",
+    "age": 35,
+    "salary": 21211.1,
+    "subsidy": 300,
+    "time": 1693524683000
+  },
+  {
+    "name": "包子",
+    "nickname": "小包子",
+    "age": 29,
+    "salary": 17722.1,
+    "subsidy": 300,
+    "time": 1693524683000
+  }
+]
