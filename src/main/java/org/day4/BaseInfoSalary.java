@@ -16,7 +16,7 @@ public class BaseInfoSalary {
     private Double salary;
     private Double subsidy;
     private String time;
-    private ArrayList<String> hobbyList = new java.util.ArrayList<>();
+    private ArrayList<String> hobbyList = new ArrayList<>();
 
     public BaseInfoSalary() {
     }

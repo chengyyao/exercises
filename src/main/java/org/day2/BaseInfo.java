@@ -17,6 +17,8 @@ public class BaseInfo {
     private Long time;
     private String dateTime;
 
+    private Long DaysOnDuty;
+
     public BaseInfo() {
     }
 
@@ -28,7 +30,7 @@ public class BaseInfo {
         this.subsidy = (row[4] == null || row[4].isEmpty())? 0.0 : Double.parseDouble(row[4]);
         if (row.length == 6){
             this.time = (row[5] == null || row[5].isEmpty()) ? 0L : Long.parseLong(row[5]);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date((row[5] == null || row[5].isEmpty()) ? 0L : Long.parseLong(row[5]));
             this.dateTime = sdf.format(date);
         }else {
@@ -36,6 +38,16 @@ public class BaseInfo {
             this.dateTime = "";
         }
     }
+
+    public BaseInfo(String name, String nickName, int age, Double salary, Double subsidy, Long time) {
+        this.name = name;
+        this.nickName = nickName;
+        this.age = age;
+        this.salary = salary;
+        this.subsidy = subsidy;
+        this.time = time;
+    }
+
 
     public String getName() {
         return name;
@@ -93,15 +105,22 @@ public class BaseInfo {
         this.dateTime = dateTime;
     }
 
+    public Long getDaysOnDuty() {
+        return DaysOnDuty;
+    }
+
+    public void setDaysOnDuty(Long daysOnDuty) {
+        DaysOnDuty = daysOnDuty;
+    }
+
     @Override
     public String toString() {
-        return "BaseInfo{" +
-                "name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", age=" + age +
-                ", salary=" + salary +
-                ", subsidy=" + subsidy +
-                ", time=" + time +
-                '}';
+        return  name +
+                ", " +  nickName +
+                ", " + age +
+                ", " + salary +
+                ", " + subsidy +
+                ", " + time +
+                ", " + DaysOnDuty;
     }
 }
