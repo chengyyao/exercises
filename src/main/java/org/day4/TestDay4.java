@@ -58,7 +58,7 @@ public class TestDay4 {
         for (BaseInfoSalary infoSalary : andHobbyArrayList) {
             if (infoSalary.getSalary() < avgSalary && infoSalary.getTime() != null && !infoSalary.getTime().isEmpty()) {
                 System.out.println(infoSalary.getName() + "工资为：" + infoSalary.getSalary() + "工资低于平均工资，符合涨薪条件");
-                String[] times = infoSalary.getTime().split("-");
+                String[] times = infoSalary.getTime().split("/");
                 // '2023-09-05 07:22:03'   2023, 09, 05 07:22:03
                 int targetYear = Integer.parseInt(times[0]);
                 int targetMonth = Integer.parseInt(times[1]);

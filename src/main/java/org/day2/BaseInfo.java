@@ -30,7 +30,7 @@ public class BaseInfo {
         this.subsidy = (row[4] == null || row[4].isEmpty())? 0.0 : Double.parseDouble(row[4]);
         if (row.length == 6){
             this.time = (row[5] == null || row[5].isEmpty()) ? 0L : Long.parseLong(row[5]);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             Date date = new Date((row[5] == null || row[5].isEmpty()) ? 0L : Long.parseLong(row[5]));
             this.dateTime = sdf.format(date);
         }else {
