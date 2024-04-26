@@ -30,10 +30,8 @@ import java.util.stream.Collectors;
  * d.找出4月过生日的人,如果没有找到生日信息也当做是4月过生日; 追加到最后行
  */
 public class TestDay5 {
-    private static List<BaseInfo> collect;
-    private static List<Birthday> birthdays;
     public static void main(String[] args) {
-
+        List<BaseInfo> collect = Collections.emptyList();
         String nameJoin= null;
         try (BufferedReader brBaseInfo = new BufferedReader(new FileReader("src\\main\\resources\\BaseInfo.txt"));
              BufferedReader brI = new BufferedReader(new FileReader("src\\main\\resources\\IncrBaseInfo.json"));
@@ -50,7 +48,7 @@ public class TestDay5 {
 
 
             // 4、遍历list，每个都增加入职时间，然后再排序
-            extracted(baseInfoList);
+            collect = extracted(baseInfoList);
 
             // 5、读birthday数据，并把4月过生日的追加到最后
             // 创建birthday的实体类，然后直接把读取的json数据转换成 birthdays的list集合
@@ -65,7 +63,7 @@ public class TestDay5 {
         )
         {
             // 3、先输出到new中
-            extracted(bwb,nameJoin);
+            extracted(bwb,nameJoin, collect);
 
 
         } catch (IOException e) {
@@ -76,7 +74,7 @@ public class TestDay5 {
 
     }
 
-    private static void extracted(BufferedWriter bwb, String NameJoin) throws IOException {
+    private static void extracted(BufferedWriter bwb, String nameJoin, List<BaseInfo> collect) throws IOException {
         bwb.write("name,nickname,age,salary,subsidy,time,DaysOnDuty");
         bwb.newLine();
         for (BaseInfo baseInfo : collect) {
@@ -84,13 +82,13 @@ public class TestDay5 {
             bwb.newLine();
         }
 
-        if (NameJoin != null && !NameJoin.isEmpty()){
-            bwb.write(NameJoin);
+        if (nameJoin != null && !nameJoin.isEmpty()){
+            bwb.write(nameJoin);
             bwb.newLine();
         }
     }
 
-    private static void extracted(ArrayList<BaseInfo> baseInfoList) {
+    private static List<BaseInfo> extracted(ArrayList<BaseInfo> baseInfoList) {
         Instant now = Instant.now(); // 获取当前的时间对象
         for (BaseInfo baseInfo : baseInfoList) {
             if (baseInfo.getTime().equals(0L)){
@@ -102,8 +100,9 @@ public class TestDay5 {
                 baseInfo.setDaysOnDuty(days);
             }
         }
-        collect = baseInfoList.stream().sorted((o1, o2) ->
-                Long.compare(o2.getDaysOnDuty() , o1.getDaysOnDuty())).collect(Collectors.toList());
+        List<BaseInfo> collect = baseInfoList.stream().sorted((o1, o2) ->
+                Long.compare(o2.getDaysOnDuty(), o1.getDaysOnDuty())).collect(Collectors.toList());
+        return collect;
     }
 
     private static HashMap<String, BaseInfo> getStringBaseInfoHashMap(BufferedReader brBaseInfo) throws IOException {
@@ -147,13 +146,13 @@ public class TestDay5 {
     }
 
     private static String getNameJoin(BufferedReader brb, List<BaseInfo> collect) throws IOException{
-        String NameJoin = null;
+        String nameJoin = null;
         String brbLine;
         StringBuilder birthdayJsonStr = new StringBuilder();
         while ((brbLine = brb.readLine()) != null){
             birthdayJsonStr.append(brbLine);
         }
-        birthdays = JSON.parseArray(birthdayJsonStr.toString(), Birthday.class);
+        List<Birthday> birthdays = JSON.parseArray(birthdayJsonStr.toString(), Birthday.class);
         ArrayList<String> names = new ArrayList<>();
         for (Birthday birthday : birthdays) {
             String[] split = birthday.getBirthday().split("-");
@@ -166,19 +165,17 @@ public class TestDay5 {
         }
         // stream().map就是把所有的某个属性值取出来
         Set<String> stringSet = birthdays.stream().map(Birthday::getName).collect(Collectors.toSet());
-        List<String> StringName = collect.stream().map(BaseInfo::getName).
+        List<String> stringName = collect.stream().map(BaseInfo::getName).
                 filter(name -> !stringSet.contains(name)).collect(Collectors.toList());
 
 
-        for (String s : StringName) {
-            names.add(s);
-        }
+        names.addAll(stringName);
 
         // 转换成字符串拼接
-        if (names != null && !names.isEmpty()){
-            NameJoin = String.join(",", names);
+        if (!names.isEmpty()){
+            nameJoin = String.join(",", names);
         }
-        return NameJoin;
+        return nameJoin;
     }
 
 
