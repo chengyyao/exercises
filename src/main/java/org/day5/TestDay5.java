@@ -93,10 +93,14 @@ public class TestDay5 {
     private static void extracted(ArrayList<BaseInfo> baseInfoList) {
         Instant now = Instant.now(); // 获取当前的时间对象
         for (BaseInfo baseInfo : baseInfoList) {
-            Instant hireDate = Instant.ofEpochMilli(baseInfo.getTime());
-            Duration duration = Duration.between(hireDate, now);
-            long days = duration.toDays();
-            baseInfo.setDaysOnDuty(days);
+            if (baseInfo.getTime().equals(0L)){
+                baseInfo.setDaysOnDuty(0L);
+            }else {
+                Instant hireDate = Instant.ofEpochMilli(baseInfo.getTime());
+                Duration duration = Duration.between(hireDate, now);
+                long days = duration.toDays();
+                baseInfo.setDaysOnDuty(days);
+            }
         }
         collect = baseInfoList.stream().sorted((o1, o2) ->
                 Long.compare(o2.getDaysOnDuty() , o1.getDaysOnDuty())).collect(Collectors.toList());
@@ -117,33 +121,25 @@ public class TestDay5 {
 
     private static ArrayList<BaseInfo> getBaseInfoList(BufferedReader brI, HashMap<String, BaseInfo> baseInfoMap ) throws IOException{
         String IncrBaseInfoLine;
-        String totalIncrBaseInfo = "";
+        StringBuilder totalBaseinfo = new StringBuilder();
         while ((IncrBaseInfoLine = brI.readLine()) != null) {
-            totalIncrBaseInfo += IncrBaseInfoLine;
+            totalBaseinfo.append(IncrBaseInfoLine);
         }
 
-        JSONArray jsonArray = JSON.parseArray(totalIncrBaseInfo);
+        JSONArray jsonArray = JSON.parseArray(totalBaseinfo.toString());
         for (int i = 0; i < jsonArray.size(); i++) {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
-            if (baseInfoMap.containsKey(jsonObject.getString("name"))) {
-                baseInfoMap.get(jsonObject.getString("name")).setNickName(jsonObject.getString("nickname"));
-                baseInfoMap.get(jsonObject.getString("name")).setAge(jsonObject.getInteger("age"));
-                baseInfoMap.get(jsonObject.getString("name")).setSalary(jsonObject.getDouble("salary"));
-                baseInfoMap.get(jsonObject.getString("name")).setSubsidy(jsonObject.getDouble("subsidy"));
-                baseInfoMap.get(jsonObject.getString("name")).setTime(jsonObject.getLong("time"));
-            } else {
-                baseInfoMap.put(jsonObject.getString("name"),
-                        new BaseInfo(
-                                jsonObject.getString("name"),
-                                jsonObject.getString("nickname"),
-                                jsonObject.getInteger("age"),
-                                jsonObject.getDouble("salary"),
-                                jsonObject.getDouble("subsidy"),
-                                jsonObject.getLong("time")
-                        )
-                );
-
-            }
+            // 更新使用map key是唯一的就可以，就直接把json中的数据，put到baseInfo的map中即可
+            baseInfoMap.put(jsonObject.getString("name"),
+                    new BaseInfo(
+                            jsonObject.getString("name"),
+                            jsonObject.getString("nickname"),
+                            jsonObject.getInteger("age"),
+                            jsonObject.getDouble("salary"),
+                            jsonObject.getDouble("subsidy"),
+                            jsonObject.getLong("time")
+                    )
+            );
         }
 
         ArrayList<BaseInfo> baseInfoList = new ArrayList<>(baseInfoMap.values());
